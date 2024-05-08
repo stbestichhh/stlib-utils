@@ -8,6 +8,6 @@ const config = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-}
+};
 
-module.exports = config
+module.exports = config;
