@@ -1,3 +1,6 @@
+# test
+lib/test_usage.ts
+
 # IDE
 .idea/
 
@@ -132,3 +135,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+!/lib/index.ts
+!/lib/index.ts
