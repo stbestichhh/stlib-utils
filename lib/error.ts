@@ -19,7 +19,10 @@ export const handleErrorSync = (
       throw error;
     }
 
-    console.error({ message: options?.message ?? 'Unexpected error.', error: error });
+    console.error({
+      message: options?.message ?? 'Unexpected error.',
+      error: error,
+    });
   }
 };
 
@@ -48,7 +51,10 @@ export const handleError = async (
       throw error;
     }
 
-    console.error({ message: options?.message ?? 'Unexpected error.', error: error });
+    console.error({
+      message: options?.message ?? 'Unexpected error.',
+      error: error,
+    });
   }
 };
 
