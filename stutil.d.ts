@@ -26,4 +26,4 @@ export function logError(
   stack?: boolean,
 ): Promise<void>;
 
-// Utility: config
+// Utility: fs

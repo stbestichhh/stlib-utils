@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Changed:
 * Changed error handler logic
+* Updated types for error utility
 
 ## Patch 0.0.1-r
 ### Added:
