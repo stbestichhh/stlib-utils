@@ -42,3 +42,26 @@ export function isExists(
   path: PathLike,
   options?: CreateOptions,
 ): Promise<boolean>;
+
+// Utility: config
+
+export interface ConfigType {
+  [key: string]: string | number;
+}
+
+export class Config {
+  constructor(path: PathLike, config: ConfigType);
+  public readonly path: PathLike;
+  private config: ConfigType;
+  read(): ConfigType;
+  static read(path: PathLike): Promise<any>
+  static readSync(path: PathLike): any;
+  get(): string | number;
+  static get(key: string, path: PathLike): Promise<string | number>;
+  static getSync(key: string, path: PathLike): string | number;
+  write(config: ConfigType): Promise<void>;
+  static create(path: PathLike): Promise<void>;
+  static createSync(path: PathLike): void;
+  static write(path: PathLike, config: ConfigType): Promise<void>;
+  static writeSync(path: PathLike, config: ConfigType): void;
+}
