@@ -99,6 +99,41 @@ CreateOptions {
 }
 ```
 
+#### Config
+Object type for config
+
+```TypeScript
+ConfigType {
+  [key: string]: string | number;
+}
+```
+
+```TypeScript
+Config {
+  constructor(path: PathLike, config: ConfigType);
+  
+  // reads current config
+  read(): ConfigType;
+  static read(path: PathLike): Promise<{ [key: string]: string | number }>;  
+  static readSync(path: PathLike): { [key: string]: string | number };
+  
+  // Get specific value from config
+  get(): string | number;
+  static get(key: string, path: PathLike): Promise<string | number>;
+  static getSync(key: string, path: PathLike): string | number;
+  
+  // If use static methods of Config class, use this function to create config before other operations
+  static create(path: PathLike): Promise<void>;
+  static createSync(path: PathLike): void;
+  
+  // Update config
+  write(config: ConfigType): Promise<void>;
+  static write(path: PathLike, config: ConfigType): Promise<void>;
+  static writeSync(path: PathLike, config: ConfigType): void;
+}
+
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
