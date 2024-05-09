@@ -65,3 +65,7 @@ export class Config {
   static write(path: PathLike, config: ConfigType): Promise<void>;
   static writeSync(path: PathLike, config: ConfigType): void;
 }
+
+// Utility: logger
+
+export class Log {}
