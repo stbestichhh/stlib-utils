@@ -1,6 +1,4 @@
 import { PathLike } from 'fs';
-import fs from 'fs';
-import node_path from 'path';
 
 // Utility: error
 
