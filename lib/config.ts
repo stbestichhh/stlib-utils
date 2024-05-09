@@ -6,7 +6,7 @@ export class Config {
   public readonly path: PathLike;
   private config: { [key: string]: string | number };
 
-  constructor(path: PathLike, config: { [key: string]: any }) {
+  constructor(path: PathLike, config: { [key: string]: string | number }) {
     fs.promises.mkdir(node_path.dirname(path.toString()), { recursive: true }).then(async () => {
       await fs.promises.writeFile(path, JSON.stringify(config));
     })
