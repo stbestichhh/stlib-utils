@@ -5,6 +5,17 @@
 
 # @stlib/utils
 
+## Table of contents
+
+* [Description](#about)
+* [Getting started](#getting-started)
+  * [Instalation](#installation)
+  * [Usage](#usage)
+* [Contributing](#contributing)
+* [Changelog](#changelog)
+* [Authors](#authors)
+* [License](#license)
+
 ## About
 
 **stlib** - is a library with utilities and functions which makes developing easier. This library
