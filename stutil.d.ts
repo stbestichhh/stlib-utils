@@ -11,7 +11,10 @@ export interface HandleErrorOptions {
 }
 
 export function isError(error: unknown): boolean;
-export function handleErrorSync(error: unknown, options?: HandleErrorOptions): void;
+export function handleErrorSync(
+  error: unknown,
+  options?: HandleErrorOptions,
+): void;
 export function handleError(
   error: unknown,
   callback: () => void | Promise<void>,
@@ -36,10 +39,7 @@ export interface CreateOptions {
   content?: string;
 }
 
-export function isExistsSync(
-  path: PathLike,
-  options?: CreateOptions,
-): boolean;
+export function isExistsSync(path: PathLike, options?: CreateOptions): boolean;
 export function isExists(
   path: PathLike,
   options?: CreateOptions,
