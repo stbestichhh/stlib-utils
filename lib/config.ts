@@ -7,9 +7,11 @@ export class Config {
   private config: { [key: string]: string | number };
 
   constructor(path: PathLike, config: { [key: string]: string | number }) {
-    fs.promises.mkdir(node_path.dirname(path.toString()), { recursive: true }).then(async () => {
-      await fs.promises.writeFile(path, JSON.stringify(config));
-    })
+    fs.promises
+      .mkdir(node_path.dirname(path.toString()), { recursive: true })
+      .then(async () => {
+        await fs.promises.writeFile(path, JSON.stringify(config));
+      });
     this.path = path;
     this.config = config;
   }
@@ -33,7 +35,7 @@ export class Config {
   }
 
   static async get(key: string, path: PathLike) {
-    const config = await Config.read(path)
+    const config = await Config.read(path);
     return config[key];
   }
 
@@ -48,17 +50,25 @@ export class Config {
   }
 
   static async create(path: PathLike) {
-    await fs.promises.mkdir(node_path.dirname(path.toString()), { recursive: true }).then(async () => {
-      await fs.promises.writeFile(path, '');
-    });
+    await fs.promises
+      .mkdir(node_path.dirname(path.toString()), { recursive: true })
+      .then(async () => {
+        await fs.promises.writeFile(path, '');
+      });
   }
 
-  static createSync(path: PathLike, config: { [key: string]: string | number }) {
-    fs.mkdirSync(node_path.dirname(path.toString()), { recursive: true })
+  static createSync(
+    path: PathLike,
+    config: { [key: string]: string | number },
+  ) {
+    fs.mkdirSync(node_path.dirname(path.toString()), { recursive: true });
     fs.writeFileSync(path, JSON.stringify(config));
   }
 
-  static async write(path: PathLike, config: { [key: string]: string | number }) {
+  static async write(
+    path: PathLike,
+    config: { [key: string]: string | number },
+  ) {
     const exconfig = await Config.read(path);
     Object.assign(exconfig, config);
     await fs.promises.writeFile(path, JSON.stringify(exconfig));

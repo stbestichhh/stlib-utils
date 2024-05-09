@@ -54,7 +54,7 @@ export class Config {
   public readonly path: PathLike;
   private config: ConfigType;
   read(): ConfigType;
-  static read(path: PathLike): Promise<{ [key: string]: string | number }>
+  static read(path: PathLike): Promise<{ [key: string]: string | number }>;
   static readSync(path: PathLike): { [key: string]: string | number };
   get(): string | number;
   static get(key: string, path: PathLike): Promise<string | number>;
