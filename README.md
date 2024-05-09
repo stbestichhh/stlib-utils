@@ -79,13 +79,13 @@ logError(error: unknown, path: PathLike, stack?: boolean): void;
 #### File system utilities
 
 ```TypeScript
-export function isExistsSync(path: PathLike, options?: CreateOptions): boolean;
+isExistsSync(path: PathLike, options?: CreateOptions): boolean;
 
 // Checks is file or directory exists and creates it synchronously
 ```
 
 ```TypeScript
-export function isExists(path: PathLike, options?: CreateOptions): boolean;
+isExists(path: PathLike, options?: CreateOptions): boolean;
 
 // Checks is file or directory exists and creates it asynchronously
 ```
