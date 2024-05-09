@@ -1,23 +1,22 @@
 import { PathLike } from 'fs';
 
 // Utility: error
+
+export interface HandleErrorOptions {
+  message?: string;
+  throw?: boolean;
+  toLog?: { path: PathLike; withStack?: boolean };
+}
+
 export function isError(error: unknown): boolean;
 export function handleErrorSync(
   error: unknown,
-  options?: {
-    message?: string;
-    throw?: boolean;
-    toLog?: { path: PathLike; withStack: boolean };
-  },
+  options?: HandleErrorOptions,
 ): void;
 export function handleError(
   error: unknown,
-  options?: {
-    message?: string;
-    callback: () => void | Promise<void>;
-    throw?: boolean;
-    toLog?: { path: PathLike; withStack: boolean };
-  },
+  callback: () => void | Promise<void>,
+  options?: HandleErrorOptions,
 ): Promise<void>;
 export function logErrorSync(
   error: unknown,
@@ -29,3 +28,17 @@ export function logError(
   path: PathLike,
   stack?: boolean,
 ): Promise<void>;
+
+// Utility: fs
+
+export interface CreateOptions {
+  create: boolean;
+  recursive?: boolean;
+  content?: string;
+}
+
+export function isExistsSync(path: PathLike, options?: CreateOptions): boolean;
+export function isExists(
+  path: PathLike,
+  options?: CreateOptions,
+): Promise<boolean>;
