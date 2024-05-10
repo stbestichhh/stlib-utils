@@ -49,7 +49,7 @@ handleErrorSync(error: unknown, options?: HandleErrorOptions,): void;
 ```
 
 ```TypeScript
-handleErrorSync(error: unknown, callback: () => void | Promise<void>, options?: HandleErrorOptions,): Promise<void>;
+handleError(error: unknown, callback: () => void | Promise<void>, options?: HandleErrorOptions,): Promise<void>;
 
 // Handles error asynchronously.
 // It can log error to console, throw error, write it to log file and calls a callback before error will be thrown.
