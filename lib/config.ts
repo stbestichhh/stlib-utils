@@ -49,7 +49,10 @@ export class Config {
     await fs.promises.writeFile(this.path, JSON.stringify(this.config));
   }
 
-  static async create(path: PathLike, config: { [key: string]: string | number }) {
+  static async create(
+    path: PathLike,
+    config: { [key: string]: string | number },
+  ) {
     await fs.promises
       .mkdir(node_path.dirname(path.toString()), { recursive: true })
       .then(async () => {
@@ -59,7 +62,7 @@ export class Config {
 
   static createSync(
     path: PathLike,
-    config: { [key: string]: string | number }
+    config: { [key: string]: string | number },
   ) {
     fs.mkdirSync(node_path.dirname(path.toString()), { recursive: true });
     fs.writeFileSync(path, JSON.stringify(config));
