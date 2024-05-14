@@ -134,6 +134,36 @@ Config {
 
 ```
 
+#### CLI
+Object type for arguments
+
+```TypeScript
+OptionsType {
+  [key: string]: string;
+}
+```
+
+```TypeScript
+// Parses arhuments and return object
+function parseArgs(argv: string[]): OptionsType;
+
+// Object with parsed arguments
+const options: OptionsType;
+```
+
+**Example**
+```shell
+$ yarn ts-node index.ts -a --b -c=1 --d= 2 --e=smth=3 -f 4
+```
+
+```TypeScript
+import { options } from './cli';
+
+console.log(options);
+
+// Output: { a: '', b: '', c: '1', d: '2', e: 'smth=3', f: '4' }
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
