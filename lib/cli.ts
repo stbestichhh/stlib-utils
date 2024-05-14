@@ -3,32 +3,22 @@ export const parseArgs = (argv: string[]) => {
   const args = argv.slice(2);
 
   for(let i = 0; i < args.length; i++) {
-    if(args[i].startsWith('--')) {
-      if(args[i + 1] && !args[i + 1].startsWith('-')) {
-        const [key] = args[i].slice(2).split('=');
-        const value = args[i + 1];
-        options[key] = value || '';
-      } else {
-        const [key, value, valuesp] = args[i].slice(2).split('=');
-        if(valuesp) {
-          options[key] = `${value}=${valuesp}` || '';
-        } else {
-          options[key] = value || '';
-        }
+    const arg = args[i];
+    const nextArg = args[i + 1];
+    const isLongPrefix = args[i].startsWith('--');
+    const isShortPrefix = args[i].startsWith('-');
+    const keyArg = isLongPrefix ? arg.slice(2) : (isShortPrefix ? arg.slice(1) : '');
+
+    if(isLongPrefix || isShortPrefix) {
+      const hasValue = nextArg && !nextArg.startsWith('-');
+
+      let [key, value] = keyArg.split('=');
+
+      if(hasValue) {
+        value = nextArg;
       }
-    } else if(args[i].startsWith('-')) {
-      if(args[i + 1] && !args[i + 1].startsWith('-')) {
-        const [key] = args[i].slice(1).split('=');
-        const value = args[i + 1];
-        options[key] = value || '';
-      } else {
-        const [key, value, valuesp] = args[i].slice(1).split('=');
-        if(valuesp) {
-          options[key] = `${value}=${valuesp}` || ''
-        } else {
-          options[key] = value || '';
-        }
-      }
+
+      options[key] = value || '';
     }
   }
 
