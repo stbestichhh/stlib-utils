@@ -1,5 +1,5 @@
 export const parseArgs = (argv: string[]) => {
-  const options: { [key: string]: string } = {}
+  const options: { [key: string]: string } = {};
   const args = argv.slice(2);
 
   args.forEach((arg) => {
@@ -13,6 +13,6 @@ export const parseArgs = (argv: string[]) => {
   });
 
   return options;
-}
+};
 
 export const options = parseArgs(process.argv);
