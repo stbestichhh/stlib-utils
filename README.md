@@ -134,6 +134,23 @@ Config {
 
 ```
 
+#### CLI
+Object type for arguments
+
+```TypeScript
+OptionsType {
+  [key: string]: string;
+}
+```
+
+```TypeScript
+// Parses arhuments and return object
+function parseArgs(argv: string[]): OptionsType;
+
+// Object with parsed arguments
+const options: OptionsType;
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
