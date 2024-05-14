@@ -50,12 +50,11 @@ describe('Parse arguments', () => {
     expect(options).toEqual({ verbose: '', o: '', file: 'input.txt' });
   });
 
-  // TODO: this test case is not passing
-  // it('should parse options with values containing equals sign', () => {
-  //   const argv = ['node', 'cli.js', '--output=output=1.txt', '-f=input=1.txt'];
-  //   const options = parseArgs(argv);
-  //   expect(options).toEqual({ output: 'output=1.txt', f: 'input=1.txt' });
-  // });
+  it('should parse options with values containing equals sign', () => {
+    const argv = ['node', 'cli.js', '--output=output=1.txt', '-f=input=1.txt'];
+    const options = parseArgs(argv);
+    expect(options).toEqual({ output: 'output=1.txt', f: 'input=1.txt' });
+  });
 
   it('should handle duplicate options by keeping the last one', () => {
     const argv = [

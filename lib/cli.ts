@@ -16,12 +16,12 @@ export const parseArgs = (argv: string[]) => {
     if (isLongPrefix || isShortPrefix) {
       const hasValue = nextArg && !nextArg.startsWith('-');
 
-      const [key, value] = keyArg.split('=');
+      const [key, value, valuesp] = keyArg.split('=');
 
       if (hasValue) {
         options[key] = nextArg || '';
       } else {
-        options[key] = value || '';
+        options[key] = valuesp ? `${value}=${valuesp}` : value || '';
       }
     }
   }
