@@ -2,13 +2,31 @@ import { parseArgs } from '../lib/cli';
 
 describe('Parse arguments', () => {
   it('should parse options with -- prefix', () => {
-    const argv = ['node', 'cli.js', '--verbose', '--output=output.txt', '-f', 'input.txt'];
+    const argv = [
+      'node',
+      'cli.js',
+      '--verbose',
+      '--output=output.txt',
+      '-f',
+      'input.txt',
+    ];
     const options = parseArgs(argv);
-    expect(options).toEqual({ verbose: '', output: 'output.txt', f: 'input.txt' });
+    expect(options).toEqual({
+      verbose: '',
+      output: 'output.txt',
+      f: 'input.txt',
+    });
   });
 
   it('should parse options with - prefix', () => {
-    const argv = ['node', 'cli.js', '-v', '-o=output.txt', '--file', 'input.txt'];
+    const argv = [
+      'node',
+      'cli.js',
+      '-v',
+      '-o=output.txt',
+      '--file',
+      'input.txt',
+    ];
     const options = parseArgs(argv);
     expect(options).toEqual({ v: '', o: 'output.txt', file: 'input.txt' });
   });
@@ -20,7 +38,14 @@ describe('Parse arguments', () => {
   });
 
   it('should parse options with empty values', () => {
-    const argv = ['node', 'cli.js', '--verbose=', '-o=', '--file=', 'input.txt'];
+    const argv = [
+      'node',
+      'cli.js',
+      '--verbose=',
+      '-o=',
+      '--file=',
+      'input.txt',
+    ];
     const options = parseArgs(argv);
     expect(options).toEqual({ verbose: '', o: '', file: 'input.txt' });
   });
@@ -32,7 +57,13 @@ describe('Parse arguments', () => {
   });
 
   it('should handle duplicate options by keeping the last one', () => {
-    const argv = ['node', 'cli.js', '--verbose=first', '--verbose=last', '--output=output.txt'];
+    const argv = [
+      'node',
+      'cli.js',
+      '--verbose=first',
+      '--verbose=last',
+      '--output=output.txt',
+    ];
     const options = parseArgs(argv);
     expect(options).toEqual({ verbose: 'last', output: 'output.txt' });
   });
