@@ -12,13 +12,13 @@ export const parseArgs = (argv: string[]) => {
     if(isLongPrefix || isShortPrefix) {
       const hasValue = nextArg && !nextArg.startsWith('-');
 
-      let [key, value] = keyArg.split('=');
+      const [key, value] = keyArg.split('=');
 
       if(hasValue) {
-        value = nextArg;
+        options[key] = nextArg || ''
+      } else {
+        options[key] = value || ''
       }
-
-      options[key] = value || '';
     }
   }
 
