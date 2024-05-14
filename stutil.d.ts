@@ -65,3 +65,12 @@ export class Config {
   static write(path: PathLike, config: ConfigType): Promise<void>;
   static writeSync(path: PathLike, config: ConfigType): void;
 }
+
+// Utility: cli
+
+export interface OptionsType {
+  [key: string]: string;
+}
+
+export function parseArgs(argv: string[]): OptionsType;
+export const options: OptionsType;
