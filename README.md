@@ -157,7 +157,7 @@ $ yarn ts-node index.ts -a --b -c=1 --d= 2 --e=smth=3 -f 4
 ```
 
 ```TypeScript
-import { options } from './cli';
+import { options } from '@stlib/utils';
 
 console.log(options);
 
