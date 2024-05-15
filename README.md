@@ -60,7 +60,7 @@ Object type for options:
 HandleErrorOptions {
   message?: string;
   throw?: boolean;
-  toLog?: { path: PathLike; withStack?: boolean }; 
+  toLog?: { path: PathLike; withStack?: boolean };
 }
 ```
 
@@ -111,21 +111,21 @@ ConfigType {
 ```TypeScript
 Config {
   constructor(path: PathLike, config: ConfigType);
-  
+
   // reads current config
   read(): ConfigType;
-  static read(path: PathLike): Promise<{ [key: string]: string | number }>;  
+  static read(path: PathLike): Promise<{ [key: string]: string | number }>;
   static readSync(path: PathLike): { [key: string]: string | number };
-  
+
   // Get specific value from config
-  get(): string | number;
+  get(key: string): string | number;
   static get(key: string, path: PathLike): Promise<string | number>;
   static getSync(key: string, path: PathLike): string | number;
-  
+
   // If use static methods of Config class, use this function to create config before other operations
   static create(path: PathLike): Promise<void>;
   static createSync(path: PathLike): void;
-  
+
   // Update config
   write(config: ConfigType): Promise<void>;
   static write(path: PathLike, config: ConfigType): Promise<void>;
