@@ -13,11 +13,11 @@ export function handleErrorSync(
   error: unknown,
   options?: HandleErrorOptions,
 ): void;
-export function handleError(
+export function handleError<T>(
   error: unknown,
-  callback: () => void | Promise<void>,
+  callback: () => T | Promise<T>,
   options?: HandleErrorOptions,
-): Promise<void>;
+): Promise<T | void>;
 export function logErrorSync(
   error: unknown,
   path: PathLike,

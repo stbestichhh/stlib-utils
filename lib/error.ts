@@ -32,7 +32,7 @@ export const handleError = async <T>(
   options?: {
     message?: string;
     throw?: boolean;
-    toLog?: { path: fs.PathLike; withStack: boolean };
+    toLog?: { path: fs.PathLike; withStack?: boolean };
   },
 ): Promise<T | void> => {
   if (isError(error)) {
