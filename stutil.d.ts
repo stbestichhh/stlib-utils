@@ -17,7 +17,7 @@ export function handleError<T>(
   error: unknown,
   callback: () => T | Promise<T>,
   options?: HandleErrorOptions,
-): Promise<{ callbackResult: T | undefined, handledError: unknown }>;
+): Promise<{ callbackResult: T | undefined; handledError: unknown }>;
 export function logErrorSync(
   error: unknown,
   path: PathLike,
