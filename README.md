@@ -42,14 +42,14 @@ isError(error: unknown): boolean;
 ```
 
 ```TypeScript
-handleErrorSync(error: unknown, options?: HandleErrorOptions,): void;
+handleErrorSync(error: unknown, options?: HandleErrorOptions,): { handledError: unknown };
 
 // Handles error synchronously.
 // It can log error to console, throw error and write it to log file.
 ```
 
 ```TypeScript
-handleError(error: unknown, callback: () => void | Promise<void>, options?: HandleErrorOptions,): Promise<void>;
+handleError(error: unknown, callback: () => T | Promise<T>, options?: HandleErrorOptions,): Promise<{ callbackResult: T | undefined, handledError: unknown }>;
 
 // Handles error asynchronously.
 // It can log error to console, throw error, write it to log file and calls a callback before error will be thrown.

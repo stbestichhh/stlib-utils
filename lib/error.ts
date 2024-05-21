@@ -7,10 +7,14 @@ export const handleErrorSync = (
   options?: {
     message?: string;
     throw?: boolean;
-    toLog?: { path: fs.PathLike; withStack: boolean };
+    toLog?: { path: fs.PathLike; withStack?: boolean };
   },
-): void => {
+): { handledError: unknown } => {
+  let handledError: unknown = undefined;
+
   if (isError(error)) {
+    handledError = error;
+
     if (options?.toLog) {
       logErrorSync(error, options.toLog.path, options.toLog.withStack);
     }
@@ -19,43 +23,45 @@ export const handleErrorSync = (
       throw error;
     }
 
-    console.error({
-      message: options?.message ?? 'Unexpected error.',
-      error: error,
-    });
+    console.error(options?.message ?? 'Unexpected error.', error);
   }
+
+  return { handledError };
 };
 
-export const handleError = async (
+export const handleError = async <T>(
   error: unknown,
-  callback: () => void | Promise<void>,
+  callback: () => T | Promise<T>,
   options?: {
     message?: string;
     throw?: boolean;
-    toLog?: { path: fs.PathLike; withStack: boolean };
+    toLog?: { path: fs.PathLike; withStack?: boolean };
   },
-): Promise<void> => {
+): Promise<{ callbackResult: T | undefined; handledError: unknown }> => {
+  let callbackResult: T | undefined = undefined;
+  let handledError: unknown = undefined;
+
+  try {
+    callbackResult = await callback();
+  } catch (error) {
+    console.error('Error in callback', error);
+  }
+
   if (isError(error)) {
+    handledError = error;
+
     if (options?.toLog) {
       await logError(error, options.toLog.path, options.toLog.withStack);
-    }
-
-    const cbResult: void | Promise<void> = callback();
-    if (cbResult instanceof Promise) {
-      await cbResult;
-    } else {
-      callback();
     }
 
     if (options?.throw) {
       throw error;
     }
 
-    console.error({
-      message: options?.message ?? 'Unexpected error.',
-      error: error,
-    });
+    console.error(options?.message ?? 'Unexpected error.', error);
   }
+
+  return { callbackResult, handledError };
 };
 
 export const logErrorSync = (
