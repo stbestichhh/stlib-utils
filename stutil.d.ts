@@ -12,12 +12,12 @@ export function isError(error: unknown): boolean;
 export function handleErrorSync(
   error: unknown,
   options?: HandleErrorOptions,
-): void;
+): { handledError: unknown };
 export function handleError<T>(
   error: unknown,
   callback: () => T | Promise<T>,
   options?: HandleErrorOptions,
-): Promise<T | void>;
+): Promise<{ callbackResult: T | undefined, handledError: unknown }>;
 export function logErrorSync(
   error: unknown,
   path: PathLike,

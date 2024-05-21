@@ -7,7 +7,7 @@ export const handleErrorSync = (
   options?: {
     message?: string;
     throw?: boolean;
-    toLog?: { path: fs.PathLike; withStack: boolean };
+    toLog?: { path: fs.PathLike; withStack?: boolean };
   },
 ): { handledError: unknown } => {
   let handledError: unknown = undefined;
