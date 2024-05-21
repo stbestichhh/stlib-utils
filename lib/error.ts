@@ -9,8 +9,12 @@ export const handleErrorSync = (
     throw?: boolean;
     toLog?: { path: fs.PathLike; withStack: boolean };
   },
-): void => {
+): { handledError: unknown } => {
+  let handledError: unknown = undefined;
+
   if (isError(error)) {
+    handledError = error;
+
     if (options?.toLog) {
       logErrorSync(error, options.toLog.path, options.toLog.withStack);
     }
@@ -19,11 +23,10 @@ export const handleErrorSync = (
       throw error;
     }
 
-    console.error({
-      message: options?.message ?? 'Unexpected error.',
-      error: error,
-    });
+    console.error(options?.message ?? 'Unexpected error.', error);
   }
+
+  return { handledError }
 };
 
 export const handleError = async <T>(
@@ -41,7 +44,7 @@ export const handleError = async <T>(
   try {
     callbackResult = await callback();
   } catch (error) {
-    console.error({ message: 'Error in callback', error })
+    console.error('Error in callback', error)
   }
 
   if (isError(error)) {
@@ -55,10 +58,7 @@ export const handleError = async <T>(
       throw error;
     }
 
-    console.error({
-      message: options?.message ?? 'Unexpected error.',
-      error,
-    });
+    console.error(options?.message ?? 'Unexpected error.', error);
   }
 
   return { callbackResult, handledError };
