@@ -26,25 +26,24 @@ export const handleErrorSync = (
   }
 };
 
-export const handleError = async (
+export const handleError = async <T>(
   error: unknown,
-  callback: () => void | Promise<void>,
+  callback: () => T | Promise<T>,
   options?: {
     message?: string;
     throw?: boolean;
     toLog?: { path: fs.PathLike; withStack: boolean };
   },
-): Promise<void> => {
+): Promise<T | void> => {
   if (isError(error)) {
     if (options?.toLog) {
       await logError(error, options.toLog.path, options.toLog.withStack);
     }
 
-    const cbResult: void | Promise<void> = callback();
-    if (cbResult instanceof Promise) {
-      await cbResult;
-    } else {
-      callback();
+    try {
+      return await callback();
+    } catch (error) {
+      console.error({ message: 'Error in callback', error })
     }
 
     if (options?.throw) {
@@ -53,7 +52,7 @@ export const handleError = async (
 
     console.error({
       message: options?.message ?? 'Unexpected error.',
-      error: error,
+      error,
     });
   }
 };
