@@ -34,16 +34,21 @@ export const handleError = async <T>(
     throw?: boolean;
     toLog?: { path: fs.PathLike; withStack?: boolean };
   },
-): Promise<T | void> => {
+): Promise<{ callbackResult: T | undefined, handledError: unknown }> => {
+  let callbackResult: T | undefined = undefined;
+  let handledError: unknown = undefined;
+
+  try {
+    callbackResult = await callback();
+  } catch (error) {
+    console.error({ message: 'Error in callback', error })
+  }
+
   if (isError(error)) {
+    handledError = error;
+
     if (options?.toLog) {
       await logError(error, options.toLog.path, options.toLog.withStack);
-    }
-
-    try {
-      return await callback();
-    } catch (error) {
-      console.error({ message: 'Error in callback', error })
     }
 
     if (options?.throw) {
@@ -55,6 +60,8 @@ export const handleError = async <T>(
       error,
     });
   }
+
+  return { callbackResult, handledError };
 };
 
 export const logErrorSync = (
