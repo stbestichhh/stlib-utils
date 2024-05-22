@@ -1,5 +1,10 @@
 import * as fs from 'fs';
-import { isError, handleErrorSync, handleError, logErrorSync, logError } from '../lib/error';
+import {
+  isError,
+  handleErrorSync,
+  handleError,
+  logErrorSync,
+} from '../lib/error';
 jest.mock('fs');
 
 describe('isError', () => {
@@ -15,7 +20,9 @@ describe('isError', () => {
 });
 
 describe('handleErrorSync', () => {
-  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const consoleErrorSpy = jest
+    .spyOn(console, 'error')
+    .mockImplementation(() => {});
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -25,7 +32,7 @@ describe('handleErrorSync', () => {
     const error = new Error('Test error');
     const options = {
       message: 'An error occurred',
-      toLog: { path: 'error.log', withStack: true }
+      toLog: { path: 'error.log', withStack: true },
     };
 
     handleErrorSync(error, options);
@@ -33,7 +40,7 @@ describe('handleErrorSync', () => {
     expect(consoleErrorSpy).toHaveBeenCalledWith('An error occurred', error);
     expect(fs.appendFileSync).toHaveBeenCalledWith(
       'error.log',
-      expect.stringContaining(error.message)
+      expect.stringContaining(error.message),
     );
   });
 
@@ -60,7 +67,15 @@ describe('handleError', () => {
   it('should throw an error if the throw option is true', async () => {
     const error = new Error('Test error');
 
-    await expect(handleError(error, async () => { throw new Error('Callback error'); }, { throw: true })).rejects.toThrow(error);
+    await expect(
+      handleError(
+        error,
+        async () => {
+          throw new Error('Callback error');
+        },
+        { throw: true },
+      ),
+    ).rejects.toThrow(error);
   });
 
   it('should return the handled error and callback result', async () => {
@@ -83,8 +98,7 @@ describe('logErrorSync', () => {
 
     expect(fs.appendFileSync).toHaveBeenCalledWith(
       path,
-      expect.stringContaining(error.message)
+      expect.stringContaining(error.message),
     );
   });
 });
-
