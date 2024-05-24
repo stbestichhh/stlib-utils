@@ -103,7 +103,7 @@ export abstract class AbstractError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 
-  abstract serialize(...args: any): any;
+  abstract serialize(...args: unknown[]): unknown;
 
   format(): { name: string, message: string, code: number, options: { [key: string]: string | number } | undefined, stack: string | undefined } {
     return { name: this.name, message: this.message, code: this.code, options: this.options, stack: this.stack };

@@ -35,7 +35,7 @@ export abstract class AbstractError extends Error {
   readonly name: string;
   readonly options?: { [key: string]: string | number };
   protected constructor(message: string, options?: { [key: string]: string | number });
-  abstract serialize(...args: any): any;
+  abstract serialize(...args: unknown[]): unknown;
   format(): { name: string, message: string, code: number, options: { [key: string]: string | number } | undefined, stack: string | undefined };
 }
 
