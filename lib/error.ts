@@ -94,6 +94,6 @@ export abstract class AbstractError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = this.constructor.name;
   }
-  abstract code: number;
+  abstract readonly code: number;
   abstract serialize(): { message: string, code?: number }
 }

@@ -29,6 +29,12 @@ export function logError(
   stack?: boolean,
 ): Promise<void>;
 
+export abstract class AbstractError extends Error {
+  protected constructor(message: string);
+  abstract readonly code: number;
+  abstract serialize(): { message: string, code?: number }
+}
+
 // Utility: fs
 
 export interface CreateOptions {
