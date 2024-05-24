@@ -32,8 +32,11 @@ export function logError(
 export abstract class AbstractError extends Error {
   abstract readonly code: number;
   readonly message: string;
-  protected constructor(message: string);
-  abstract serialize(): { message: string, code?: number }
+  readonly name: string;
+  readonly options?: { [key: string]: string | number };
+  protected constructor(message: string, options?: { [key: string]: string | number });
+  abstract serialize(...args: any): any;
+  format(): { name: string, message: string, code: number, options: { [key: string]: string | number } | undefined, stack: string | undefined };
 }
 
 // Utility: fs

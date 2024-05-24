@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Patch 0.07
+## Patch 0.0.7
 ### Added:
-* AbstractError class which helps with creating your own error in application
+* AbstractError class which helps with creating your own errors in application
 
 ### Changed:
 * Improved async error handling function logic
