@@ -87,3 +87,13 @@ export const logError = async (
     await fs.promises.appendFile(path, logData);
   }
 };
+
+export abstract class AbstractError extends Error {
+  protected constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, new.target.prototype);
+    this.name = this.constructor.name;
+  }
+  abstract code: number;
+  abstract serialize(): { message: string, code?: number }
+}
