@@ -92,9 +92,12 @@ export abstract class AbstractError extends Error {
   abstract readonly code: number;
   readonly message: string;
   readonly name: string;
-  readonly options?: { [key: string]: string | number }
+  readonly options?: { [key: string]: string | number };
 
-  protected constructor(message: string, options?: { [key: string]: string | number }) {
+  protected constructor(
+    message: string,
+    options?: { [key: string]: string | number },
+  ) {
     super(message);
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = this.constructor.name;
@@ -105,7 +108,19 @@ export abstract class AbstractError extends Error {
 
   abstract serialize(...args: unknown[]): unknown;
 
-  format(): { name: string, message: string, code: number, options: { [key: string]: string | number } | undefined, stack: string | undefined } {
-    return { name: this.name, message: this.message, code: this.code, options: this.options, stack: this.stack };
+  format(): {
+    name: string;
+    message: string;
+    code: number;
+    options: { [key: string]: string | number } | undefined;
+    stack: string | undefined;
+  } {
+    return {
+      name: this.name,
+      message: this.message,
+      code: this.code,
+      options: this.options,
+      stack: this.stack,
+    };
   }
 }
