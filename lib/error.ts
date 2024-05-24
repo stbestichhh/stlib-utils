@@ -89,11 +89,15 @@ export const logError = async (
 };
 
 export abstract class AbstractError extends Error {
-  protected constructor(public message: string) {
+  abstract readonly code: number;
+  readonly message: string;
+
+  protected constructor(message: string) {
     super(message);
     Object.setPrototypeOf(this, new.target.prototype);
     this.name = this.constructor.name;
+    this.message = message;
   }
-  abstract readonly code: number;
-  abstract serialize(): { message: string, code?: number }
+
+  abstract serialize(): { message: string, code?: number };
 }

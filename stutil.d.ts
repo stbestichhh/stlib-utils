@@ -30,8 +30,9 @@ export function logError(
 ): Promise<void>;
 
 export abstract class AbstractError extends Error {
-  protected constructor(message: string);
   abstract readonly code: number;
+  readonly message: string;
+  protected constructor(message: string);
   abstract serialize(): { message: string, code?: number }
 }
 
