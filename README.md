@@ -35,6 +35,34 @@ $ yarn add @stlib/utils
 ### Usage
 
 #### Error utilities:
+
+```TypeScript
+abstract class AbstractError {}
+
+// Provides template for your custom errors.
+
+// Usage:
+class CustomError extends AbstractError {
+  constructor() {
+    super('Message', { option: 'smth' }); // second parameter is optional
+  }
+  
+  readonly code = 500;
+  
+  serialize(...args): any {  // implement a function which do smth
+    return [...args];   
+  }
+}
+
+const error = new CustomError();
+
+error.code; // return error code
+error.message; // return error message
+error.options; // return error options
+error.serialize(...args); // implement this function to do smth
+error.format(); // returns all error data in JSON format
+```
+
 ```TypeScript
 isError(error: unknown): boolean;
 
