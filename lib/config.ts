@@ -7,11 +7,8 @@ export class Config {
   private config: { [key: string]: string | number };
 
   constructor(path: PathLike, config: { [key: string]: string | number }) {
-    fs.promises
-      .mkdir(node_path.dirname(path.toString()), { recursive: true })
-      .then(async () => {
-        await fs.promises.writeFile(path, JSON.stringify(config));
-      });
+    fs.mkdirSync(node_path.dirname(path.toString()), { recursive: true })
+    fs.writeFileSync(path, JSON.stringify(config));
     this.path = path;
     this.config = config;
   }
