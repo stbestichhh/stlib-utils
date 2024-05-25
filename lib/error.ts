@@ -106,9 +106,7 @@ export abstract class AbstractError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 
-  abstract serialize(...args: unknown[]): unknown;
-
-  format(): {
+  serialize(): {
     name: string;
     message: string;
     code: number;

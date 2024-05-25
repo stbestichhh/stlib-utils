@@ -48,19 +48,15 @@ class CustomError extends AbstractError {
   }
   
   readonly code = 500;
-  
-  serialize(...args): any {  // implement a function which do smth
-    return [...args];   
-  }
 }
 
 const error = new CustomError();
 
 error.code; // return error code
+error.name; // return name of the error
 error.message; // return error message
 error.options; // return error options
-error.serialize(...args); // implement this function to do smth
-error.format(); // returns all error data in JSON format
+error.serialize() // return formatted output with detailed error info
 ```
 
 ```TypeScript

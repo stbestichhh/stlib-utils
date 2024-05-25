@@ -38,8 +38,7 @@ export abstract class AbstractError extends Error {
     message: string,
     options?: { [key: string]: string | number },
   );
-  abstract serialize(...args: unknown[]): unknown;
-  format(): {
+  serialize(): {
     name: string;
     message: string;
     code: number;
