@@ -1,16 +1,43 @@
 import { PathLike } from 'fs';
 import * as fs from 'fs';
 import * as node_path from 'path';
+import { isExistsSync } from './fs';
 
 export class Config {
   public readonly path: PathLike;
   private config: { [key: string]: string | number };
 
-  constructor(path: PathLike, config: { [key: string]: string | number }) {
-    fs.mkdirSync(node_path.dirname(path.toString()), { recursive: true })
-    fs.writeFileSync(path, JSON.stringify(config));
+  constructor(
+    path: PathLike,
+    config: { [key: string]: string | number },
+    options?: { force?: boolean; alter?: boolean },
+  ) {
     this.path = path;
     this.config = config;
+    this.initialize(options);
+  }
+
+  private initialize(options?: { force?: boolean; alter?: boolean }) {
+    if (options?.force) {
+      fs.mkdirSync(node_path.dirname(this.path.toString()), {
+        recursive: true,
+      });
+      fs.writeFileSync(this.path, JSON.stringify(this.config));
+    } else if (options?.alter) {
+      Config.writeSync(this.path, this.config);
+      this.config = Config.readSync(this.path);
+    } else {
+      const confExists = isExistsSync(this.path);
+
+      if (!confExists) {
+        fs.mkdirSync(node_path.dirname(this.path.toString()), {
+          recursive: true,
+        });
+        fs.writeFileSync(this.path, JSON.stringify(this.config));
+      } else {
+        this.config = Config.readSync(this.path);
+      }
+    }
   }
 
   read() {
