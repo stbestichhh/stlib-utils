@@ -65,7 +65,7 @@ export function isExists(
 
 export interface ConfigOptionsType {
   force?: boolean;
-  alter?: boolean
+  alter?: boolean;
 }
 
 export interface ConfigType {
@@ -74,7 +74,7 @@ export interface ConfigType {
 
 export class Config {
   constructor(path: PathLike, config: ConfigType, options?: ConfigOptionsType);
-  private initialize(options?: ConfigOptionsType): void
+  private initialize(options?: ConfigOptionsType): void;
   public readonly path: PathLike;
   private config: ConfigType;
   read(): ConfigType;
