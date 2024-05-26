@@ -124,22 +124,29 @@ CreateOptions {
 ```
 
 #### Config
-Object type for config
-
+Object type for config:
 ```TypeScript
 ConfigType {
   [key: string]: string | number;
 }
 ```
 
+Options type for config:
+```TypeScript
+export interface ConfigOptionsType {
+  force?: boolean;
+  alter?: boolean;
+}
+```
+
 ```TypeScript
 Config {
-  constructor(path: PathLike, config: ConfigType);
+  constructor(path: PathLike, config: ConfigType, options?: ConfigOptionsType);
 
   // reads current config
   read(): ConfigType;
-  static read(path: PathLike): Promise<{ [key: string]: string | number }>;
-  static readSync(path: PathLike): { [key: string]: string | number };
+  static read(path: PathLike): Promise<ConfigType>;
+  static readSync(path: PathLike): ConfigType;
 
   // Get specific value from config
   get(key: string): string | number;
