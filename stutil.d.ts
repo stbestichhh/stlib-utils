@@ -93,7 +93,7 @@ export class Config {
 // Utility: cli
 
 export interface OptionsType {
-  [key: string]: string;
+  [key: string]: string | boolean;
 }
 
 export function parseArgs(argv: string[]): OptionsType;
