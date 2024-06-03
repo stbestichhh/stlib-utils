@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Fixed:
 * If no value provided for cli option, it will be boolean instead of ''.
+* Fixed file creation. File was not creating if content option set to ''. Not it creates a file.
 
 ## Patch 0.0.9
 ### Added:
