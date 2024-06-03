@@ -192,7 +192,7 @@ import { options } from '@stlib/utils';
 
 console.log(options);
 
-// Output: { a: '', b: '', c: '1', d: '2', e: 'smth=3', f: '4' }
+// Output: { a: true, b: true, c: '1', d: '2', e: 'smth=3', f: '4' }
 ```
 
 ## Contributing

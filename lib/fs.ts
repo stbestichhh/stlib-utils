@@ -10,11 +10,15 @@ export const isExistsSync = (
     fs.accessSync(path);
     return true;
   } catch (error) {
-    if (options?.create && options.content) {
-      fs.mkdirSync(node_path.dirname(path.toString()), {
-        recursive: options.recursive,
-      });
-      fs.writeFileSync(path, options.content);
+    if (options?.create && 'content' in options) {
+      try {
+        fs.mkdirSync(node_path.dirname(path.toString()), {
+          recursive: options.recursive,
+        });
+        fs.writeFileSync(path, options.content || '');
+      } catch (error) {
+        fs.writeFileSync(path, options.content || '');
+      }
       return true;
     } else if (options?.create) {
       fs.mkdirSync(path, { recursive: options.recursive });
@@ -32,11 +36,12 @@ export const isExists = async (
     await fs.promises.access(path);
     return true;
   } catch (error) {
-    if (options?.create && options.content) {
+    if (options?.create && 'content' in options) {
       await fs.promises
         .mkdir(node_path.dirname(path.toString()), {
           recursive: options.recursive,
         })
+        .catch(() => {})
         .then(async () => {
           await fs.promises.writeFile(path, options.content || '');
         });

@@ -1,5 +1,5 @@
 export const parseArgs = (argv: string[]) => {
-  const options: { [key: string]: string } = {};
+  const options: { [key: string]: string | boolean } = {};
   const args = argv.slice(2);
 
   for (let i = 0; i < args.length; i++) {
@@ -19,9 +19,9 @@ export const parseArgs = (argv: string[]) => {
       const [key, value, valuesp] = keyArg.split('=');
 
       if (hasValue) {
-        options[key] = nextArg || '';
+        options[key] = nextArg || true;
       } else {
-        options[key] = valuesp ? `${value}=${valuesp}` : value || '';
+        options[key] = valuesp ? `${value}=${valuesp}` : value || true;
       }
     }
   }

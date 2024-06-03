@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.0.9
+## Unreleased
+### Fixed:
+* If no value provided for cli option, it will be boolean instead of ''.
+* Fixed file creation. File was not creating if content option set to ''. Not it creates a file.
+
+## Patch 0.0.9
 ### Added:
 * Alter config on creating new class option
 * Overwrite config on creating new class option

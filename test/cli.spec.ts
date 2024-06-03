@@ -12,7 +12,7 @@ describe('Parse arguments', () => {
     ];
     const options = parseArgs(argv);
     expect(options).toEqual({
-      verbose: '',
+      verbose: true,
       output: 'output.txt',
       f: 'input.txt',
     });
@@ -28,13 +28,13 @@ describe('Parse arguments', () => {
       'input.txt',
     ];
     const options = parseArgs(argv);
-    expect(options).toEqual({ v: '', o: 'output.txt', file: 'input.txt' });
+    expect(options).toEqual({ v: true, o: 'output.txt', file: 'input.txt' });
   });
 
   it('should parse options without values', () => {
     const argv = ['node', 'cli.js', '--verbose', '-o', '--file', 'input.txt'];
     const options = parseArgs(argv);
-    expect(options).toEqual({ verbose: '', o: '', file: 'input.txt' });
+    expect(options).toEqual({ verbose: true, o: true, file: 'input.txt' });
   });
 
   it('should parse options with empty values', () => {
@@ -47,7 +47,7 @@ describe('Parse arguments', () => {
       'input.txt',
     ];
     const options = parseArgs(argv);
-    expect(options).toEqual({ verbose: '', o: '', file: 'input.txt' });
+    expect(options).toEqual({ verbose: true, o: true, file: 'input.txt' });
   });
 
   it('should parse options with values containing equals sign', () => {
