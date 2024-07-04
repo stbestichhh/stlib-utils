@@ -1,4 +1,8 @@
-export const cancellable = (callback: (...args: unknown[]) => Promise<unknown>, args: unknown[], sleepTime: number = 0) => {
+export const cancellable = (
+  callback: (...args: unknown[]) => Promise<unknown>,
+  args: unknown[],
+  sleepTime: number = 0,
+) => {
   let timer: NodeJS.Timeout | null = null;
 
   const cancelFn = () => {
@@ -13,4 +17,4 @@ export const cancellable = (callback: (...args: unknown[]) => Promise<unknown>, 
   }, sleepTime);
 
   return cancelFn;
-}
+};
