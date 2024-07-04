@@ -101,4 +101,4 @@ export const options: OptionsType;
 
 // Utility: cancellable
 
-export function cancellable(callback: (...args: any[]) => Promise<any>, args: any[], sleepTime?: number): void;
+export function cancellable(callback: (...args: unknown[]) => Promise<unknown>, args: unknown[], sleepTime?: number): void;
