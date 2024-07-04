@@ -98,3 +98,7 @@ export interface OptionsType {
 
 export function parseArgs(argv: string[]): OptionsType;
 export const options: OptionsType;
+
+// Utility: cancellable
+
+export function cancellable(callback: (...args: any[]) => Promise<any>, args: any[], sleepTime?: number): void;
