@@ -195,6 +195,24 @@ console.log(options);
 // Output: { a: true, b: true, c: '1', d: '2', e: 'smth=3', f: '4' }
 ```
 
+#### Cancellable function
+Allows to cancel function if it invokes to long. For example we are making some async operation and it completes too long, so we can cancel this operation.
+
+```TypeScript
+cancellable = (callback: (...args: any[]) => Promise<any>, args: any[], sleepTime: number = 0): void;
+```
+
+```TypeScript
+const cb = async (...args: any[]) => {
+  // some async operations
+}
+
+const cancel = cancellable(cb, ['some', 'arguments']);
+
+setTimeout(cancel, 1000); // function will be stopped if it runs longer than 1s
+ 
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
