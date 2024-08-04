@@ -1,3 +1,6 @@
+# Package manager
+.yarn
+
 # test
 lib/test_usage.ts
 
