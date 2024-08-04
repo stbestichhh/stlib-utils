@@ -1,10 +1,10 @@
 {
-  "name": "@stlib/utils",
-  "version": "0.0.11",
-  "description": "Utilities for projects",
+  "name": "@stlib/config",
+  "version": "0.0.4",
+  "description": "Utility for creating configs in node.js applications",
   "main": "dist/stutil.js",
   "types": "stutil.d.ts",
-  "repository": "https://github.com/stbestichhh/stutil",
+  "repository": "https://github.com/stbestichhh/stlib-utils/tree/master_config",
   "author": "Kiril Yakymchuk <stbestich@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,8 @@
     "Utils",
     "Utilities",
     "Lib",
-    "Library"
+    "Library",
+    "Config"
   ],
   "devDependencies": {
     "@types/jest": "^29.5.12",
