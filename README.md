@@ -123,48 +123,6 @@ CreateOptions {
 }
 ```
 
-#### Config
-Object type for config:
-```TypeScript
-ConfigType {
-  [key: string]: string | number;
-}
-```
-
-Options type for config:
-```TypeScript
-export interface ConfigOptionsType {
-  force?: boolean;
-  alter?: boolean;
-}
-```
-
-```TypeScript
-Config {
-  constructor(path: PathLike, config: ConfigType, options?: ConfigOptionsType);
-
-  // reads current config
-  read(): ConfigType;
-  static read(path: PathLike): Promise<ConfigType>;
-  static readSync(path: PathLike): ConfigType;
-
-  // Get specific value from config
-  get(key: string): string | number;
-  static get(key: string, path: PathLike): Promise<string | number>;
-  static getSync(key: string, path: PathLike): string | number;
-
-  // If use static methods of Config class, use this function to create config before other operations
-  static create(path: PathLike): Promise<void>;
-  static createSync(path: PathLike): void;
-
-  // Update config
-  write(config: ConfigType): Promise<void>;
-  static write(path: PathLike, config: ConfigType): Promise<void>;
-  static writeSync(path: PathLike, config: ConfigType): void;
-}
-
-```
-
 #### CLI
 Object type for arguments
 
@@ -193,24 +151,6 @@ import { options } from '@stlib/utils';
 console.log(options);
 
 // Output: { a: true, b: true, c: '1', d: '2', e: 'smth=3', f: '4' }
-```
-
-#### Cancellable function
-Allows to cancel function if it invokes to long. For example we are making some async operation and it completes too long, so we can cancel this operation.
-
-```TypeScript
-cancellable = (callback: (...args: any[]) => Promise<any>, args: any[], sleepTime: number = 0): void;
-```
-
-```TypeScript
-const cb = async (...args: any[]) => {
-  // some async operations
-}
-
-const cancel = cancellable(cb, ['some', 'arguments']);
-
-setTimeout(cancel, 1000); // function will be stopped if it runs longer than 1s
- 
 ```
 
 ## Contributing
